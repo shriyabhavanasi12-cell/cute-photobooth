@@ -1,8 +1,8 @@
 
 import './App.css';
 import React from "react";
-import PhotoBooth from "./components/photobooth";
-
+import Photobooth from "./components/photobooth";
+import "./styles/global.css"
 const logoSrc="/assets/logo/jiggleduo-logo.png";
 
 
@@ -39,6 +39,26 @@ JiggleDuo Photobooth
   
 </h1>
       </div>
+
+      <div style={{
+    flex:1,
+    width:"100%",
+    display:"flex",
+    justifyContent:"center",
+    alignItems:"center",
+    paddingBottom:"40px"
+
+
+      }}
+      
+      >
+
+<Photobooth/>
+
+      </div>
+
+
+
     </div>
   );
 }
