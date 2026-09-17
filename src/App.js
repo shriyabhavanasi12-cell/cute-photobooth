@@ -1,5 +1,10 @@
-import logo from './logo.svg';
+
 import './App.css';
+import React from "react";
+import PhotoBooth from "./components/photobooth";
+
+const logoSrc="/assets/logo/jiggleduo-logo.png";
+
 
 function App() {
   return (
