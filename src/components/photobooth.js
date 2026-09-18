@@ -30,4 +30,7 @@ export default function Photobooth(){
         {x: 123, y:1885},
     ]
     
+    
 }
+
+

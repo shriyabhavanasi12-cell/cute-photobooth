@@ -1,7 +1,7 @@
 
 import './App.css';
 import React from "react";
-import Photobooth from "./components/photobooth";
+import Photobooth from "./components/Photobooth";
 import "./styles/global.css"
 const logoSrc="/assets/logo/jiggleduo-logo.png";
 
