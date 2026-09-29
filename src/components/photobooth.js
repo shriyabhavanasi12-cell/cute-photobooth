@@ -29,7 +29,83 @@ export default function Photobooth(){
         {x: 123, y:1286},
         {x: 123, y:1885},
     ]
-    
+    const[selectorFrame,setSelectedFrame]=useState(null);
+    const[mode,setMode]=useState("photo");
+
+    return(
+        <div style={centerCol}>
+
+        
+            <div style={topBar}>
+                <button style={{
+                    ...buttonStyle,
+                    position:"absolute",
+                    left:0,
+                    top:10,
+                    height:40,
+                    padding:"0 16px",
+                    lineHeight:"40px",
+                    display:"flex",
+                    alignItems: "center",
+                    justifyContent:"center",
+                }}
+                
+                
+                onClick={handleBack}
+                >Back 
+                </button>
+                <h1 style={titleBar}>
+
+                
+                {
+                    !selectedFrame
+                        ? "₊✩‧₊˚ Select a frame౨ৎ ˚₊✩‧₊"
+                        : mode === "photo"
+                            ? "⋆｡‧˚ʚ Smile :)ɞ˚‧｡⋆"
+                            : ". ݁₊ ⊹ . ݁Let's decorate . ⊹ ₊ ݁."
+                }
+                </h1>
+                
+        </div>
+        <div style={mainContent}> </div>
+        {!selectedFrame ?(
+            <div>
+                {frameOptions.map((src)=>{
+                    const isSelected=selectedFrame===src;
+
+                    return(
+                        <img
+                        key={src}
+                        src={src}
+                        alt="frame"
+                        onClick={()=> setSelectedFrame(src)} 
+                        onMouseEnter={(e)=>{
+                            e.currentTarget.style.transform="scale(1.08)";
+                            e.currentTarget.style.boxShadow="0 12px 30px rgb(255,122,162,0.45)";
+
+                        }}
+                        onMouseLeave={(e)=>{
+                            e.currentTarget.style.transform="scale(1)";
+                            e.currentTarget.style.boxShadow=frameThumb.boxShadow;
+
+                        
+                        }}
+
+
+                        
+                        
+                        
+                        />
+                    
+                        
+                    );
+                })}
+
+                
+                </div>
+        )}
+        </div>
+    )
     
 }
 
