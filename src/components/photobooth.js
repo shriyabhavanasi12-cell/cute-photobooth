@@ -32,95 +32,149 @@ export default function PhotoBooth(){
     const[selectedFrame, setSelectedFrame]=useState(null);
     const[mode,setMode]=useState("photo");
 
-    return(
-        <div style={centerCol}>
 
-        
-            <div style={topBar}>
-                <button style={{
-                    ...buttonStyle,
-                    position:"absolute",
-                    left:0,
-                    top:10,
-                    height:40,
-                    padding:"0 16px",
-                    lineHeight:"40px",
-                    display:"flex",
-                    alignItems: "center",
-                    justifyContent:"center",
-                }}
-                
-                
-                onClick={handleBack}
-                >Back 
-                </button>
-                <h1 style={titleBar}>
+return(
+    <div style={centerCol}>
+        {/*top bar with back*/}
 
-                
-                {
-                    !selectedFrame
+<div style={topBar}>
+<button
+  style={{
+    ...buttonStyle,
+    position:"absolute",
+    left:0,
+    top:10,
+    height:40,
+    padding:"0 16px",
+    lineHeight:"40px",
+    display:"flex",
+    alignItems:"center",
+    justifyContent:"center",
+
+  }}
+  onClick={}
+
+>Back</button>
+<h1>
+{!selectedFrame
                         ? "₊✩‧₊˚ Select a frame౨ৎ ˚₊✩‧₊"
                         : mode === "photo"
-                            ? "⋆｡‧˚ʚ Smile :)ɞ˚‧｡⋆"
-                            : ". ݁₊ ⊹ . ݁Let's decorate . ⊹ ₊ ݁."
-                }
-                </h1>
-                
-        </div>
-        <div style={mainContent}> </div>
-        {!selectedFrame ?(
-            <div style={{display:"flex",gap:24}}>
-                {frameOptions.map((src)=>{
-                    const isSelected=selectedFrame===src;
-
-                    return(
-                        <img
-                        key={src}
-                        src={src}
-                        alt="frame"
-                        onClick={()=> setSelectedFrame(src)} 
-                        onMouseEnter={(e)=>{
-                            e.currentTarget.style.transform="scale(1.08)";
-                            e.currentTarget.style.boxShadow="0 12px 30px rgb(255,122,162,0.45)";
-
-                        }}
-                        onMouseLeave={(e)=>{
-                            e.currentTarget.style.transform="scale(1)";
-                            e.currentTarget.style.boxShadow=frameThumb.boxShadow;
-
-                        
-                        }}
-
-style={{
-    ...frameThumb,
-    transform: isSelected? "scale(1.08)": "scale(1)",
-    transition:"transform 0.25s ease,box-shadow 0.25s ease",
-    boxShadow:isSelected? "0 12px 30px rgba(255,122,162,0.45)" :frameThumb.boxShadow,
-
-}}
-                        
-                        
-                        
-                        />
-                    
-                        
-                    )
-                })}
+                        ? "⋆｡‧˚ʚ Smile :)ɞ˚‧｡⋆"
+                            : ". ݁₊ ⊹ . ݁Let's decorate . ⊹ ₊ ݁."}
 
 
 
-                
-                </div>
-                
-        ): (
-            <div>
-                
-            </div>
-        )
-    }
-        </div>
-    )
+</h1>
+
+</div>
+<div style={mainContent}>
+{!selectedFrame ? (
+    <div style={{display:"flex",gap:24}}>
+{frameOptions.map((src)=>{
+    const isSelected=selectedFrame===src;
+
+    return(
+        <img
+        key={src}
+        src={src}
+        alt="frame "
+        onClick={()=> setSelectedFrame(src)}
+        onMouseEnter={(e)=> {
+            e.currentTarget.style.transform="scale(1.08)";
+            e.currentTarget.style.boxShadow="0 12px 30px rgba(255,122,162,0.45)";
+
+        }}
+        onMouseLeave={(e)=> {
+          
+            e.currentTarget.style.transform="scale(1)";
+            e.currentTarget.style.boxShadow=frameThumb.boxShadow;
     
+
+ }}
+
+ style={{
+    ...frameThumb,
+    transform:isSelected ? "scale(1.08)" : "scale(1)",
+    transition: "transform 0.25s ease, box-shadow 0.25 ease",
+    boxShadow: isSelected ? "0 12px 30px rgba(255,122,162,0.45)" : frameThumb.boxShadow,
+
+ }}
+        
+        />
+        
+    )
+})}
+
+    </div>
+):(
+    <div></div>
+)
+
+}
+</div>
+
+
+
+    </div>
+
+)
+
+
+
+
+
+
+
+
 }
 
+const centerCol={
+    display:"flex",
+    flexDirection:"column",
+    alignItems:"center",
+    gap:20
+
+};
+const topBar={
+    width:700,
+    height:60,
+    position:"relative ",
+    marginBottom:20,
+    display:"flex",
+    alignItems:"center",
+    justifyContent:"center",
+}
+
+const buttonStyle={
+    padding:"10px 20px",
+    fontSize:20,
+    cursor:"pointer",
+    fontFamily:"CantikaCute",
+    color:"#8c5b4a",
+    border:"2px solid #8c5b4a",
+    borderRadius:8,
+    background:"white"
+
+};
+const row={ display:"flex", gap:40, alignItems:"flex-start"};
+const frameThumb={
+    width:180,
+    cursor:"pointer",
+    borderRadius:12,
+    boxShadow:"0 8px 8px rgba(0,0,0,0.15)"
+};
+
+const titleBar={
+    margin:0,
+    lineHeight:"60px",
+    textAlign:"center",
+    width:"100%",
+}
+const mainContent={
+    height:600,
+    width:700,
+    justifyContent:"center",
+    alignItems:"flex-start",
+
+}
 
