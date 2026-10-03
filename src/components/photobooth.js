@@ -32,6 +32,32 @@ export default function PhotoBooth(){
     const[selectedFrame, setSelectedFrame]=useState(null);
     const[mode,setMode]=useState("photo");
 
+const[photos,setPhotos]=useState([]);
+const [photoCount,setPhotoCount]=useState(0);
+const [canTakePhoto,setCanTakePhoto]=useState(true);
+const [draggingPhoto,setDraggingPhoto]=useState(null);
+const[dragoffset,setDragonoffset]=useState({x:0,y:0});
+const[countdown,setCountdown]=useState(null);
+
+const row={display:"flex", gap:40, alignItems:"flex-start"};
+
+useEffects(()=>{
+    if(!selectedFrame)return;
+    const img=new Image();
+    img.src=selectedFrame;
+
+img.onLoad=()=>{
+    frameimgRef.current=img;
+    drawCanvas();
+
+}
+},[selectedFrame]);
+
+const drawCanvas=()=>{
+    const canvas=canvasRef.current;
+    
+}
+
 
 return(
     <div style={centerCol}>
