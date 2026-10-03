@@ -52,7 +52,7 @@ return(
     justifyContent:"center",
 
   }}
-  onClick={}
+  
 
 >Back</button>
 <h1>
@@ -138,7 +138,7 @@ const centerCol={
 const topBar={
     width:700,
     height:60,
-    position:"relative ",
+    position: "relative",
     marginBottom:20,
     display:"flex",
     alignItems:"center",
@@ -175,6 +175,5 @@ const mainContent={
     width:700,
     justifyContent:"center",
     alignItems:"flex-start",
-
+display:"flex",
 }
-
