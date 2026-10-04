@@ -41,6 +41,8 @@ const[countdown,setCountdown]=useState(null);
 
 const row={display:"flex", gap:40, alignItems:"flex-start"};
 
+
+
 useEffects(()=>{
     if(!selectedFrame)return;
     const img=new Image();
@@ -55,8 +57,67 @@ img.onLoad=()=>{
 
 const drawCanvas=()=>{
     const canvas=canvasRef.current;
+    if(canvas||!frameImgRef.current) return;
+
+    const ctx=canvas.getContext("2d");
+    const frameWidth=frameImgRef.current.width;
+    const frameHeight=frameImgRef.current.height;
+    canvas.width=frameWidth;
+    canvas.height=frameHeight;
+
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    photos.forEach(p=>{
+        const drawH= p.img.height*p.scale;
+        const dx= slot.x +p.offsetX;
+        const dy=slot.y+p.offsetY;
+
+        ctx.save()
+        ctx.beginPath();
+        ctx.rect(slot.x,slot.y,SLOTH_WIDTH,SLOT_HEIGHT);
+        ctx.clip();
+        ctx.drawImage(p.img,dx,dy,drawW,drawH);
+        ctx.restore();
+
+
+
+
+
+
+
+    });
+
+    ctx.drawImage(frameImgRef.current,0,0,frameWidth,frameHeight);
+
+
+};
+useEffect(drawCanvas,[photo,photoCount]);
+
+//photo
+const addPhoto=img=>{
+if(photoCount >=4) return;
+
+const scale= SLOTH_WIDTH/img.width;
+const drawH=img.height * scale;
+  const offsetY= drawH>SLOT_HEIGHT ? (SLOT_HEIGHT-drawH)/ 2:0;
+
+  setPhotos(p =>[
+    ...p,
+    {img,slotIndex:photoCount,scale,offsetX:0,offsetY}
+
+  ]);
+setCanTakePhoto(true);
+
+setPhotoCount(c=>{
+    const next=c+1;
+    if(next===4) setMode("decorate");
+    return next;
+});
+
+};
+const takePhotoNow=()=>{
     
 }
+
 
 
 return(
