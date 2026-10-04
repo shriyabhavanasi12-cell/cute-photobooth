@@ -181,6 +181,87 @@ const getCoords=e=>{
 
 };
 
+const handleMouseDown=e=>{
+    const {x,y}=getCoords(e);
+    if(mode==="photo"){
+        for(let i=photos.length-1;i >=0; i--){
+            const p=photos[i];
+            const slot=slots[p.slotIndex];
+            const w=p.img.width*p.scale;
+            const h=p.img.height*p.scale;
+
+            if(
+                x>=slot.x + p.offsetX &&
+                 x <= slot.x +p.offsetX+w &&
+                 y >= slot.y  + p.offsetY &&
+                 y <= slot.y+ poffsetY +h
+
+            ){
+                setDraggingPhoto(i);
+                setDragonoffset({
+                    x:x-slot.x-p.offsetX,
+                    y:y-slot.y-p.offsetY
+
+                });
+                return;
+            }
+
+        }
+    }
+
+    if(mode==="decorate"){
+        for(let i=stickers.length-1;i >=0;i--){
+
+const s=stickers[i];
+if(x >=s.x && x <= s.x +150 && y>= s.y && y <= s.y +150){
+
+    setDraggingSticker(i);
+    setDraggingSticker(i);
+    setDragoffset({x: x-s.x, y: y-s.y});
+    return;
+
+}
+
+        }
+    }
+
+};
+
+
+const handleMouseMove=e=>{
+    const {x,y}= getCoords(e);
+
+    if(draggingPhoto !==null && mode === "photo"){
+        setPhotos(prev =>{
+            const updated=[...prev];
+            const p=updated[draggingPhoto];
+            const slot=slots[p.slotIndex];
+            const w=p.img.width*p.scale;
+            const h=p.img.height*p.scale;
+
+            p.offsetX=x-slot.x-dragOffset.x;
+            p.offsetY= y- slot.y -dragOffset.y;
+
+            p.offsetX=Math.min(Math.max(p.offsetX,SLOT_WIDTH-w),0);
+            p.offsetY=Math.min(Math.max(P.offsetY,SLOT_HEIGHT-h),0);
+
+            return updated;
+
+        });
+    }
+
+
+
+
+};
+
+
+
+const handleMouseUp=()=>{
+    setDraggingPhoto(null);
+
+
+};
 
 
 return(
