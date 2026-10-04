@@ -39,6 +39,13 @@ const [draggingPhoto,setDraggingPhoto]=useState(null);
 const[dragoffset,setDragonoffset]=useState({x:0,y:0});
 const[countdown,setCountdown]=useState(null);
 
+const[stickers,setStickers]=useState([]);
+const[draggingSticker,setDraggingSticker]=useState(null);
+const[selectedSticker,setSelectedSticker ]=useState(null);
+
+
+
+
 const row={display:"flex", gap:40, alignItems:"flex-start"};
 
 
@@ -78,16 +85,27 @@ const drawCanvas=()=>{
         ctx.drawImage(p.img,dx,dy,drawW,drawH);
         ctx.restore();
 
-
-
-
-
-
-
     });
 
     ctx.drawImage(frameImgRef.current,0,0,frameWidth,frameHeight);
 
+
+
+stickers.forEach((s,i)=>{
+
+    ctx.drawImage(s.img,s.x,s.y,150,150);
+    if(i===selectedSticker){
+        ctx.strokeStyle="#ff7aa2",
+        ctx.lineWidth=4;
+        ctx.strokeRect(s.x,s.y,150,150);
+
+    }
+
+
+});
+
+
+    
 
 };
 useEffect(drawCanvas,[photos,photoCount]);
@@ -272,18 +290,18 @@ return(
 <button
   style={{
     ...buttonStyle,
-    position:"absolute",
-    left:0,
-    top:10,
-    height:40,
-    padding:"0 16px",
-    lineHeight:"40px",
-    display:"flex",
-    alignItems:"center",
-    justifyContent:"center",
+    
+position:"absolute",
+left:0,
+top:10,
+height:40,
+padding:"0 16px",
+display:"40px",
+alignItems:"center",
+justifyContent:"center",
 
   }}
-  
+  onClick={}
 
 >Back</button>
 <h1>
