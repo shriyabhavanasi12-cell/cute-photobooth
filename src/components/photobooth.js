@@ -115,8 +115,71 @@ setPhotoCount(c=>{
 
 };
 const takePhotoNow=()=>{
-    
-}
+    const src=webcamRef.current.getScreenshot();
+    const img=new Image();
+    img.src=src;
+    img.onload=()=> addPhoto(img);
+
+
+};
+
+const capturePhoto=()=>{
+    if (!canTakePhoto||countdown!==null) return;
+
+    setCanTakePhoto(false);
+    setCountdown(3);
+
+    let current=3;
+    const interval=setInterval(()=>{
+        current-=1;
+
+        if(current===0){
+            clearInterval(interval);
+            setCountdown(null);
+            takePhotoNow();
+
+        }else{
+            setCountdown(current);
+        }
+
+    },1000);
+
+};
+
+const uploadPhoto=e=>{
+    const file=e.target.files[0];
+    if(!file) return;
+
+const reader=new fileReader();
+reader.onload=()=>{
+    const img=new Image();
+    img.src=reader.result;
+
+img.onload=()=> addPhoto(img);
+
+
+};
+
+reader.readAsDataUrl(file);
+e.target.value="";
+};
+
+const redoLastPhoto=()=>{
+    if(!photos.length)return;
+    setPhotos(p=> p.slice(0,-1));
+    setPhotoCount(c=> Math.max(0,c-1));
+setCanTakePhoto(true);
+
+};
+const getCoords=e=>{
+    const r=canvasRef.current.getBoundingClientRect();
+    return{
+        x: (e.clientX-r.left)*(canvasRef.current.width/r.width),
+        y:(e.clientY-r.top)*(canvasRef.current.height/r.height)
+
+    };
+
+};
 
 
 
