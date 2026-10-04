@@ -43,7 +43,7 @@ const row={display:"flex", gap:40, alignItems:"flex-start"};
 
 
 
-useEffects(()=>{
+useEffect(()=>{
     if(!selectedFrame)return;
     const img=new Image();
     img.src=selectedFrame;
