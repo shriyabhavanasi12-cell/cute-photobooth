@@ -49,7 +49,7 @@ useEffect(()=>{
     img.src=selectedFrame;
 
 img.onLoad=()=>{
-    frameimgRef.current=img;
+    frameImgRef.current=img;
     drawCanvas();
 
 }
@@ -57,7 +57,7 @@ img.onLoad=()=>{
 
 const drawCanvas=()=>{
     const canvas=canvasRef.current;
-    if(canvas||!frameImgRef.current) return;
+    if(!canvas||!frameImgRef.current) return;
 
     const ctx=canvas.getContext("2d");
     const frameWidth=frameImgRef.current.width;
@@ -73,7 +73,7 @@ const drawCanvas=()=>{
 
         ctx.save()
         ctx.beginPath();
-        ctx.rect(slot.x,slot.y,SLOTH_WIDTH,SLOT_HEIGHT);
+        ctx.rect(slot.x,slot.y,SLOT_WIDTH,SLOT_HEIGHT);
         ctx.clip();
         ctx.drawImage(p.img,dx,dy,drawW,drawH);
         ctx.restore();
@@ -90,13 +90,13 @@ const drawCanvas=()=>{
 
 
 };
-useEffect(drawCanvas,[photo,photoCount]);
+useEffect(drawCanvas,[photos,photoCount]);
 
 //photo
 const addPhoto=img=>{
 if(photoCount >=4) return;
 
-const scale= SLOTH_WIDTH/img.width;
+const scale= SLOT_WIDTH/img.width;
 const drawH=img.height * scale;
   const offsetY= drawH>SLOT_HEIGHT ? (SLOT_HEIGHT-drawH)/ 2:0;
 
@@ -150,7 +150,7 @@ const uploadPhoto=e=>{
     const file=e.target.files[0];
     if(!file) return;
 
-const reader=new fileReader();
+const reader=new FileReader();
 reader.onload=()=>{
     const img=new Image();
     img.src=reader.result;
@@ -160,7 +160,7 @@ img.onload=()=> addPhoto(img);
 
 };
 
-reader.readAsDataUrl(file);
+reader.readAsDataURL(file);
 e.target.value="";
 };
 
@@ -194,11 +194,11 @@ const handleMouseDown=e=>{
                 x>=slot.x + p.offsetX &&
                  x <= slot.x +p.offsetX+w &&
                  y >= slot.y  + p.offsetY &&
-                 y <= slot.y+ poffsetY +h
+                 y <= slot.y+ p.offsetY +h
 
             ){
-                setDraggingPhoto(i);
-                setDragonoffset({
+                  setDraggingPhoto(i);
+                  setDragOffset({
                     x:x-slot.x-p.offsetX,
                     y:y-slot.y-p.offsetY
 
@@ -217,7 +217,7 @@ if(x >=s.x && x <= s.x +150 && y>= s.y && y <= s.y +150){
 
     setDraggingSticker(i);
     setDraggingSticker(i);
-    setDragoffset({x: x-s.x, y: y-s.y});
+    setDragOffset({x: x-s.x, y: y-s.y});
     return;
 
 }
@@ -338,7 +338,7 @@ return(
 
     </div>
 ):(
-    <div styles={row}>
+    <div style={row}>
         <div >
 
 {mode === "photo" && (
@@ -371,7 +371,6 @@ fontWeight:"bold",
 color:"white",
 textShadow:"0 4px 20px rgba(0,0,0,0.6)",
 backgroundRadius:12,
-pointerEvents:12,
 pointerEvents:"none",
 
 
@@ -401,7 +400,7 @@ Upload
 <input
 
 type="file"
-accept="image /*"
+accept="image/*"
 onChange={uploadPhoto}
 style={{display: "none"}}
 
