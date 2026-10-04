@@ -338,8 +338,150 @@ return(
 
     </div>
 ):(
-    <div></div>
+    <div styles={row}>
+        <div >
+
+{mode === "photo" && (
+
+<>
+<div style={{position:"relative",width:400}}>
+
+{/*Webcam*/}
+
+<Webcam
+audio={false}
+ref={webcamRef}
+screenshotFormat="image/jpeg"
+videoConstraints={videoConstraints}
+mirrored={true}
+style={{width:"100%" ,borderRadius:12}}
+/>
+
+{/*Webcam*/}
+
+{countdown != null && (
+<div style={{
+position:"absolute",
+inset:0,
+display:"flex",
+alignItems:"center",
+justifyContent:"center",
+fontSize:96,
+fontWeight:"bold",
+color:"white",
+textShadow:"0 4px 20px rgba(0,0,0,0.6)",
+backgroundRadius:12,
+pointerEvents:12,
+pointerEvents:"none",
+
+
+}}
+
+>
+
+{countdown}
+
+</div>
+
+
+
+)}
+
+</div>
+
+<div style={{marginTop: 16,display:"flex", gap:12}}>
+    {canTakePhoto && (
+<>
+<button style={buttonStyle} onClick={capturePhoto}>
+Take Photo
+</button>
+
+<label style={{...buttonStyle,cursor:"pointer"}}>
+Upload
+<input
+
+type="file"
+accept="image /*"
+onChange={uploadPhoto}
+style={{display: "none"}}
+
+
+
+/>
+
+
+
+</label>
+
+
+
+</>
+
+    )}
+
+{/* redo btn*/}
+
+{
+    photoCount > 0 && (
+
+        <button style={{
+
+            ...buttonStyle,
+            fontSize:22,
+            padding:"4px 10px"
+        }}
+
+        onClick={redoLastPhoto}
+        >
+ ⟳
+
+        </button>
+
+    )}
+
+
+
+</div>
+
+
+
+</>
+
+
+)}
+
+
+            </div>
+
+            {/* display frame */}
+
+            <div>
+
+<canvas ref={canvasRef}
+style={{
+
+width:200,
+height:500,
+borderRadius:16,
+boxShadow:"0 10px 30px rgba(0,0,0,0.15)",
+
+
+
+}}
+
+onMouseDown={handleMouseDown}
+onMouseMove={handleMouseMove}
+onMouseUp={handleMouseUp}
+
+/>
+
+
+            </div>
+
+         
+    </div>
 )
+
 
 }
 </div>
@@ -408,3 +550,4 @@ const mainContent={
     alignItems:"flex-start",
 display:"flex",
 }
+
