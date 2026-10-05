@@ -110,6 +110,33 @@ stickers.forEach((s,i)=>{
 };
 useEffect(drawCanvas,[photos,photoCount]);
 
+const handleBack=()=>{
+
+if(mode=="decorate"){
+    setMode("photo");
+    setCanTakePhoto(false);
+    setStickers([]);
+    setStickers(null);
+} else{
+
+setSelectedFrame(null);
+setPhotos([]);
+setPhotoCount(0);
+setStickers([]);
+setSelectedSticker(null);
+setMode("photo");
+setCanTakePhoto(true);
+
+
+
+}
+
+
+};
+
+
+
+
 //photo
 const addPhoto=img=>{
 if(photoCount >=4) return;
@@ -227,23 +254,30 @@ const handleMouseDown=e=>{
         }
     }
 
-    if(mode==="decorate"){
-        for(let i=stickers.length-1;i >=0;i--){
+if(mode=== "decorate"){
+    for(let i= stickers.length-1; i>=0; i--){
 
 const s=stickers[i];
-if(x >=s.x && x <= s.x +150 && y>= s.y && y <= s.y +150){
+if(x>=s.x && x <=s.x +150 && y>= s.y && y<=s.y+150){
 
-    setDraggingSticker(i);
-    setDraggingSticker(i);
-    setDragOffset({x: x-s.x, y: y-s.y});
-    return;
+setDraggingSticker(i);
+
+setSelectedSticker(i);
+setDragOffset({x: x-s.x, y: y-s.y});
+                    return;
 
 }
 
-        }
+}
+
     }
+}
+
+
+
 
 };
+
 
 
 const handleMouseMove=e=>{
@@ -268,8 +302,27 @@ const handleMouseMove=e=>{
         });
     }
 
+    if(draggingSticker != null&&mode =="decorate"){
+setStickers(s=>{
+
+const u=[...s];
+u[draggingSticker]={
+
+...u[draggingSticker],
+x:x-dragOffset.x,
+y:y-dragOffset.y
 
 
+
+};
+
+return u;
+
+
+});
+
+
+    }
 
 };
 
@@ -277,9 +330,26 @@ const handleMouseMove=e=>{
 
 const handleMouseUp=()=>{
     setDraggingPhoto(null);
+    setDraggingSticker(null);
 
 
 };
+
+const addSticker=src=>{
+    const img=new Image();
+    img.src=src;
+    img.onload=()=>
+        setStickers(s=> [...s,{img,x:400,y:100}]);
+    
+
+};
+
+
+
+
+
+
+
 
 
 return(
@@ -471,6 +541,11 @@ style={{display: "none"}}
             </div>
 
             {/* display frame */}
+
+
+
+
+
 
             <div>
 
