@@ -642,7 +642,7 @@ Download
 );
 
 
-
+}
 
 const centerCol={
     display:"flex",
