@@ -639,16 +639,10 @@ Download
 
     </div>
 
-)
+);
 
 
 
-
-
-
-
-
-}
 
 const centerCol={
     display:"flex",
