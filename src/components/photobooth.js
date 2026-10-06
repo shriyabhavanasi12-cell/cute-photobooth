@@ -271,7 +271,7 @@ setDragOffset({x: x-s.x, y: y-s.y});
 }
 
     }
-}
+
 
 
 
