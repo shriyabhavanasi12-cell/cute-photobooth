@@ -340,12 +340,44 @@ const addSticker=src=>{
     img.src=src;
     img.onload=()=>
         setStickers(s=> [...s,{img,x:400,y:100}]);
-    
+
 
 };
 
+useEffect(()=>{
+
+const handleKeyDown=e=>{
+
+if(
+    (e.key=="Delete"||e.key==="Backspace")&&
+    selectedSticker !=null &&
+    mode==="decorate"
+){
+
+setStickers(s=> s.filter((_,i)=>i !=selectedSticker));
+setSelectedSticker(null);
 
 
+
+
+}
+
+
+};
+
+window.addEventListener("keydown",handleKeyDown);
+return()=> window.removeEventsListener("keydown",handleKeyDown);
+
+},[selectedSticker,model]);
+
+const downloadPhoto=()=>{
+const a=document.createElement("a");
+a.href=canvasRef.current.toDataURL("image.png");
+a.download="photo-string.png";
+a.click();
+
+
+};
 
 
 
@@ -371,9 +403,9 @@ alignItems:"center",
 justifyContent:"center",
 
   }}
-  onClick={}
+  onClick={handleBack}
 
->Back</button>
+>  ← Back</button>
 <h1>
 {!selectedFrame
                         ? "₊✩‧₊˚ Select a frame౨ৎ ˚₊✩‧₊"
@@ -566,6 +598,31 @@ onMouseMove={handleMouseMove}
 onMouseUp={handleMouseUp}
 
 />
+
+{mode==="decorate"&& (
+    <div style={{
+
+marginTop:16,
+display:"flex",
+justifyContent:"center",
+    
+
+
+
+    }} >
+
+
+        <button style= {buttonStyle}onClick={downloadPhoto}>
+Download
+
+        </button>
+
+
+    </div>
+)}
+
+
+
 
 
             </div>
