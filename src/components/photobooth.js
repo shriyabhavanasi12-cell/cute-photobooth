@@ -117,12 +117,12 @@ useEffect(drawCanvas,[photos,stickers,selectedSticker,photoCount]);
 
 const handleBack=()=>{
 
-if(mode=="decorate"){
-    setMode("photo");
-    setCanTakePhoto(false);
-    setStickers([]);
-    setStickers(null);
-} else{
+if (mode == "decorate") {
+        setMode("photo");
+        setCanTakePhoto(false);
+        setStickers([]);
+        setSelectedSticker(null);
+    } else{
 
 setSelectedFrame(null);
 setPhotos([]);
