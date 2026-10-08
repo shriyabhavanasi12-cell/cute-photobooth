@@ -36,7 +36,7 @@ const[photos,setPhotos]=useState([]);
 const [photoCount,setPhotoCount]=useState(0);
 const [canTakePhoto,setCanTakePhoto]=useState(true);
 const [draggingPhoto,setDraggingPhoto]=useState(null);
-const[dragoffset,setDragonoffset]=useState({x:0,y:0});
+const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
 const[countdown,setCountdown]=useState(null);
 
 const[stickers,setStickers]=useState([]);
@@ -73,20 +73,25 @@ const drawCanvas=()=>{
     canvas.height=frameHeight;
 
     ctx.clearRect(0,0,canvas.width,canvas.height);
-    photos.forEach(p=>{
-        const drawH= p.img.height*p.scale;
-        const dx= slot.x +p.offsetX;
-        const dy=slot.y+p.offsetY;
+   
+    photos.forEach(p => {
+    const slot = slots[p.slotIndex];
 
-        ctx.save()
-        ctx.beginPath();
-        ctx.rect(slot.x,slot.y,SLOT_WIDTH,SLOT_HEIGHT);
-        ctx.clip();
-        ctx.drawImage(p.img,dx,dy,drawW,drawH);
-        ctx.restore();
+    const drawW = p.img.width * p.scale;
+    const drawH = p.img.height * p.scale;
 
-    });
+    const dx = slot.x + p.offsetX;
+    const dy = slot.y + p.offsetY;
 
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(slot.x, slot.y, SLOT_WIDTH, SLOT_HEIGHT);
+    ctx.clip();
+
+    ctx.drawImage(p.img, dx, dy, drawW, drawH);
+
+    ctx.restore();
+});
     ctx.drawImage(frameImgRef.current,0,0,frameWidth,frameHeight);
 
 
@@ -95,7 +100,7 @@ stickers.forEach((s,i)=>{
 
     ctx.drawImage(s.img,s.x,s.y,150,150);
     if(i===selectedSticker){
-        ctx.strokeStyle="#ff7aa2",
+        ctx.strokeStyle="#ff7aa2";
         ctx.lineWidth=4;
         ctx.strokeRect(s.x,s.y,150,150);
 
@@ -295,7 +300,7 @@ const handleMouseMove=e=>{
             p.offsetY= y- slot.y -dragOffset.y;
 
             p.offsetX=Math.min(Math.max(p.offsetX,SLOT_WIDTH-w),0);
-            p.offsetY=Math.min(Math.max(P.offsetY,SLOT_HEIGHT-h),0);
+            p.offsetY=Math.min(Math.max(p.offsetY,SLOT_HEIGHT-h),0);
 
             return updated;
 
@@ -368,7 +373,7 @@ setSelectedSticker(null);
 window.addEventListener("keydown",handleKeyDown);
 return()=> window.removeEventsListener("keydown",handleKeyDown);
 
-},[selectedSticker,model]);
+},[selectedSticker,mode]);
 
 const downloadPhoto=()=>{
 const a=document.createElement("a");
