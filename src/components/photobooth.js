@@ -55,7 +55,7 @@ useEffect(()=>{
     const img=new Image();
     img.src=selectedFrame;
 
-img.onLoad=()=>{
+img.onload =()=>{
     frameImgRef.current=img;
     drawCanvas();
 
@@ -113,7 +113,7 @@ stickers.forEach((s,i)=>{
     
 
 };
-useEffect(drawCanvas,[photos,photoCount]);
+useEffect(drawCanvas,[photos,stickers,selectedSticker,photoCount]);
 
 const handleBack=()=>{
 
