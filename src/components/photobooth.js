@@ -371,7 +371,7 @@ setSelectedSticker(null);
 };
 
 window.addEventListener("keydown",handleKeyDown);
-return()=> window.removeEventsListener("keydown",handleKeyDown);
+return () => window.removeEventListener("keydown", handleKeyDown);
 
 },[selectedSticker,mode]);
 
