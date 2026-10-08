@@ -609,12 +609,33 @@ onMouseUp={handleMouseUp}
 
 marginTop:16,
 display:"flex",
-justifyContent:"center",
-    
 
+  flexDirection:"column",  
+alignItems:"center",
+gap:12,
 
 
     }} >
+
+<div style= {{display:"flex",gap:12}}>
+    {stickerOptions.map((src)=>(
+        <img 
+        key={src}
+        src={src}
+        alt="stickers"
+        onClick={()=> addSticker(src)}
+        style={{
+            width:60,
+              height:60,
+            objectFit:"contain", 
+        cursor:"pointer",
+           }}
+           />
+    ))}
+
+</div>
+
+
 
 
         <button style= {buttonStyle}onClick={downloadPhoto}>
