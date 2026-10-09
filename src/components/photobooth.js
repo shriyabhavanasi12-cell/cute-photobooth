@@ -638,6 +638,7 @@ gap:12,
 
 
 
+
         <button style= {buttonStyle}onClick={downloadPhoto}>
 Download
 
