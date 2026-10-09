@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/cute-photobooth/static/css/main.d8b18dbd.css",
+    "main.js": "/cute-photobooth/static/js/main.b476e780.js",
+    "static/js/453.675ecc52.chunk.js": "/cute-photobooth/static/js/453.675ecc52.chunk.js",
+    "index.html": "/cute-photobooth/index.html",
+    "main.d8b18dbd.css.map": "/cute-photobooth/static/css/main.d8b18dbd.css.map",
+    "main.b476e780.js.map": "/cute-photobooth/static/js/main.b476e780.js.map",
+    "453.675ecc52.chunk.js.map": "/cute-photobooth/static/js/453.675ecc52.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d8b18dbd.css",
+    "static/js/main.b476e780.js"
+  ]
+}
