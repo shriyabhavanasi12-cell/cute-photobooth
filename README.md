@@ -1,3 +1,27 @@
+
+cute-photobooth built with react featuring frames and stickers in a layout of a digital photobooth
+
+features:
+live photobooth (duh) : take pictures using your webcam
+Frames: choose from four decorative photo frames
+sticker decoration : personalize your photo with 2 types of stickers currently available (a sapling and start dust) 
+photo upload: you can upload a existing image instead of taking a new picture 
+Download UI : save your finished creations to share with friends or social media 
+
+built with- react.js, javascript, CSS,Html 5 and react-webcam
+
+access the website using the deployed website link in the description of this repo 
+
+
+
+
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
