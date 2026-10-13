@@ -2,10 +2,10 @@ import React,{useRef,useState,useEffect} from "react";
 import Webcam from "react-webcam";
 
 const frameOptions=[
-    "/assets/frames/heart-frame.png",
-    "/assets/frames/heart-frame-2.png",
-    "/assets/frames/heart-frame-3.png",
-"/assets/frames/heart-frame-4.png",
+     `${process.env.PUBLIC_URL}/assets/frames/heart-frame.png`,
+  `${process.env.PUBLIC_URL}/assets/frames/heart-frame-2.png`,
+  `${process.env.PUBLIC_URL}/assets/frames/heart-frame-3.png`,
+  `${process.env.PUBLIC_URL}/assets/frames/heart-frame-4.png`,
 
 ]
 
@@ -411,6 +411,19 @@ justifyContent:"center",
   onClick={handleBack}
 
 >  ← Back</button>
+
+<img
+  src={`${process.env.PUBLIC_URL}/assets/logo/jiggleduo-logo.png`}
+  alt="JiggleDuo Logo"
+  style={{
+    width: 60,
+    height: 60,
+    objectFit: "contain",
+  }}
+/>
+
+
+
 <h1>
 {!selectedFrame
                         ? "₊✩‧₊˚ Select a frame౨ৎ ˚₊✩‧₊"
