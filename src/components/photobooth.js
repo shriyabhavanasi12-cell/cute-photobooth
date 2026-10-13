@@ -10,8 +10,9 @@ const frameOptions=[
 ]
 
 const stickerOptions=[
-    "/assets/stickers/leaf.png",
-    "/assets/stickers/sparkles.png"
+    
+    `${process.env.PUBLIC_URL}/assets/stickers/leaf.png`,
+  `${process.env.PUBLIC_URL}/assets/stickers/sparkles.png`,
 ];
 
 const videoConstraints={width: 953,height:599,facingMode:"user"};
