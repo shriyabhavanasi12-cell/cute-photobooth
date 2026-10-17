@@ -413,15 +413,7 @@ justifyContent:"center",
 
 >  ← Back</button>
 
-<img
-  src={`${process.env.PUBLIC_URL}/assets/logo/jiggleduo-logo.png`}
-  alt="JiggleDuo Logo"
-  style={{
-    width: 60,
-    height: 60,
-    objectFit: "contain",
-  }}
-/>
+<h1>JiggleDuo Photobooth</h1>
 
 
 
