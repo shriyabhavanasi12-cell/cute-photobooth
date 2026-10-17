@@ -14,7 +14,8 @@ live demo: https://shriyabhavanasi12-cell.github.io/cute-photobooth/
 
 preview
 
-<img width="630" height="398" alt="image" src="https://github.com/user-attachments/assets/3064895d-357f-45ab-87fb-85647193c3d1" />
+<img width="1364" height="655" alt="image" src="https://github.com/user-attachments/assets/001147db-988f-46a8-8a1f-86f098e5408e" />
+
 
 
 
