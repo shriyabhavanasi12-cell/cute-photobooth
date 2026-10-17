@@ -3,7 +3,7 @@ import './App.css';
 import React from "react";
 import Photobooth from "./components/photobooth";
 import "./styles/global.css"
-const logoSrc="/assets/logo/jiggleduo-logo.png";
+
 
 
 function App() {
@@ -27,7 +27,7 @@ padding:"20px 32px"
 
 
 
-<img src={logoSrc} alt="JiggleDuo Logo" style={{width: 50}}/>
+
 
 <h1 style={{
   fontFamily:"Cantika Cute",
