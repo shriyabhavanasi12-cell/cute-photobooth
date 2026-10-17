@@ -413,7 +413,6 @@ justifyContent:"center",
 
 >  ← Back</button>
 
-<h1>JiggleDuo Photobooth</h1>
 
 
 
